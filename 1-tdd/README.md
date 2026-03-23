@@ -1,29 +1,38 @@
-# Module 3 - TDD
+# Module 1 - TDD (Test-Driven Development)
 
-**Goal**: experiment with the TDD development methodology.
+**Goal**: Experiment with the TDD development methodology
+
+## TDD Cycle
+
+1. **(RED)** Write a test, run it - it should fail
+2. **(GREEN)** Write minimal code to make the test pass
+3. **(REFACTOR)** Improve code while keeping tests passing
 
 ## Steps
 
-1. Open `test_factorial.py` and examine its contents
-2. Add a few more tests in the same file
-3. **(RED STAGE)** Run `python test_factorial.py` you should get an error message like this:
+### Part A: Factorial
 
-    ```
-    F
-    ======================================================================
-    FAIL: test_factorial_of_0 (__main__.TestFactorial.test_factorial_of_0)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/Users/tom/r/devops-course/module3/tdd/test_factorial.py", line 7, in test_factorial_of_0
-        self.assertEqual(factorial(0), 1)
-        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-    AssertionError: None != 1
+1. Open `test_factorial.py` - defines expected behavior
+2. Open `factorial.py` - function raises NotImplementedError
+3. **(RED)** Run `python test_factorial.py` - tests fail
+4. **(GREEN)** Implement `factorial(n)` in factorial.py:
+   - factorial(0) = 1
+   - factorial(1) = 1
+   - factorial(n) = n * factorial(n-1)
+   - Raise ValueError for negative numbers
+5. Run tests until all pass
 
-    ----------------------------------------------------------------------
-    Ran 1 test in 0.001s
+### Part B: Fibonacci (Challenge)
 
-    FAILED (failures=1)
-    ```
+1. Open `test_fibonacci.py` - defines expected behavior
+2. **(RED)** Run `python test_fibonacci.py` - tests fail
+3. **(GREEN)** Add `fibonacci(n)` function to factorial.py:
+   - fibonacci(0) = 0
+   - fibonacci(1) = 1
+   - fibonacci(n) = fibonacci(n-1) + fibonacci(n-2)
+   - Raise ValueError for negative numbers
+4. Run tests until all pass
 
-4. **(GREEN STAGE)** Open `factorial.py` and implement the solution until the test passed
-5. **(REFACTOR STAGE)** Improve the solution on `factorial.py` to make it more general or cover edge cases
+## Tip
+
+Write the test first, then implement. This is the core of TDD.

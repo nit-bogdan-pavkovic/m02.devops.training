@@ -2,15 +2,36 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/')
+
+@app.route("/")
 def home():
-    return "Welcome to the Flask App!"
+    raise NotImplementedError("Implement home endpoint using TDD")
 
-@app.route('/add', methods=['POST'])
+
+@app.route("/health")
+def health():
+    raise NotImplementedError("Implement health endpoint using TDD")
+
+
+@app.route("/add", methods=["POST"])
 def add():
-    data = request.get_json()
-    result = data.get("a", 0) + data.get("b", 0)
-    return jsonify({"result": result})
+    raise NotImplementedError("Implement add endpoint using TDD")
 
-if __name__ == '__main__':
+
+@app.route("/subtract", methods=["POST"])
+def subtract():
+    raise NotImplementedError("Implement subtract endpoint using TDD")
+
+
+@app.route("/multiply", methods=["POST"])
+def multiply():
+    raise NotImplementedError("Implement multiply endpoint using TDD")
+
+
+@app.route("/divide", methods=["POST"])
+def divide():
+    raise NotImplementedError("Implement divide endpoint using TDD")
+
+
+if __name__ == "__main__":
     app.run(debug=True)

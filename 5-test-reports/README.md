@@ -1,6 +1,6 @@
-# Module 3 - Monitor errors with test reports
+# Module 5 - Monitor errors with test reports
 
-**Goal**: Test test reports in Semaphore
+**Goal**: Configure pytest to generate XML reports for CI/CD dashboards. Learn test filtering.
 
 ## Steps
 
@@ -15,9 +15,17 @@ source venv/bin/activate
 2. Run `pytest` and see that some tests are failing. This is ok.
 3. Run `pytest -junitxml=reports.xml` to create an XML file with the reports
 
+### Test filtering and categorization
+
+Try running specific test categories:
+- `pytest -v` - verbose output showing each test
+- `pytest -k "addition"` - run only tests with "addition" in the name
+- `pytest --collect-only` - show all collected tests without running
+- `pytest --tb=short` - shorter traceback format
+
 ### Setting up test reports
 
-During exercise 6 where we configure the pipeline you will need the following commands in the job
+During exercise 11 where we configure the pipeline you will need the following commands in the job:
 
 ```shell
 # enter the directory
