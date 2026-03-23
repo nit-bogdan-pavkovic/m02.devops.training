@@ -5,114 +5,39 @@ DB_NAME = "test_users.db"
 
 
 def get_connection():
-    return sqlite3.connect(DB_NAME)
+    raise NotImplementedError("Implement get_connection using TDD")
 
 
 def init_database():
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            email TEXT UNIQUE NOT NULL,
-            age INTEGER,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-    conn.commit()
-    conn.close()
+    raise NotImplementedError("Implement init_database using TDD")
 
 
 def create_user(name, email, age=None):
-    conn = get_connection()
-    cursor = conn.cursor()
-    try:
-        cursor.execute(
-            "INSERT INTO users (name, email, age) VALUES (?, ?, ?)", (name, email, age)
-        )
-        conn.commit()
-        user_id = cursor.lastrowid
-        conn.close()
-        return user_id
-    except sqlite3.IntegrityError as e:
-        conn.close()
-        raise ValueError(f"Email already exists: {email}")
+    raise NotImplementedError("Implement create_user using TDD")
 
 
 def get_user_by_id(user_id):
-    conn = get_connection()
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
-    row = cursor.fetchone()
-    conn.close()
-    return dict(row) if row else None
+    raise NotImplementedError("Implement get_user_by_id using TDD")
 
 
 def get_user_by_email(email):
-    conn = get_connection()
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users WHERE email = ?", (email,))
-    row = cursor.fetchone()
-    conn.close()
-    return dict(row) if row else None
+    raise NotImplementedError("Implement get_user_by_email using TDD")
 
 
 def get_all_users():
-    conn = get_connection()
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users")
-    rows = cursor.fetchall()
-    conn.close()
-    return [dict(row) for row in rows]
+    raise NotImplementedError("Implement get_all_users using TDD")
 
 
 def update_user(user_id, name=None, email=None, age=None):
-    conn = get_connection()
-    cursor = conn.cursor()
-
-    updates = []
-    values = []
-    if name is not None:
-        updates.append("name = ?")
-        values.append(name)
-    if email is not None:
-        updates.append("email = ?")
-        values.append(email)
-    if age is not None:
-        updates.append("age = ?")
-        values.append(age)
-
-    if not updates:
-        return False
-
-    values.append(user_id)
-    cursor.execute(f"UPDATE users SET {', '.join(updates)} WHERE id = ?", values)
-    affected = cursor.rowcount
-    conn.commit()
-    conn.close()
-    return affected > 0
+    raise NotImplementedError("Implement update_user using TDD")
 
 
 def delete_user(user_id):
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
-    affected = cursor.rowcount
-    conn.commit()
-    conn.close()
-    return affected > 0
+    raise NotImplementedError("Implement delete_user using TDD")
 
 
 def delete_all_users():
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM users")
-    conn.commit()
-    conn.close()
+    raise NotImplementedError("Implement delete_all_users using TDD")
 
 
 def drop_database():

@@ -1,46 +1,37 @@
-# Module 9 - Security Testing
+# Module 9 - Security Testing (TDD)
 
-**Goal**: Learn to identify common security vulnerabilities in web applications
+**Goal**: Learn to identify common security vulnerabilities using TDD
 
 ## Common Vulnerabilities
 
 - **SQL Injection** - malicious SQL in input
 - **XSS (Cross-Site Scripting)** - malicious scripts in output
 - **Input Validation** - missing or insufficient validation
-- **Authentication** - weak or missing auth
+- **Error Handling** - information disclosure in errors
+
+## TDD Cycle
+
+1. **(RED)** Run tests - they will fail because app.py raises NotImplementedError
+2. **(GREEN)** Implement Flask app endpoints (from module 4) + security fixes
+3. **(REFACTOR)** Improve security handling
 
 ## Steps
 
-1. Start the Flask app from exercise 4:
-   ```bash
-   cd ../4-e2e && python app.py
-   ```
-
-2. Open `test_security.py` and examine the test structure
-
-3. Implement these security tests:
-
-   ### Input Validation Tests
-   - Test missing required fields (no "a" or "b" in request)
-   - Test invalid data types (strings instead of numbers)
-   - Test boundary values (very large numbers)
-   - Test empty strings
-
-   ### SQL Injection Prevention (if applicable)
-   - Test that special characters are handled safely
-   - Ensure errors don't expose database details
-
-   ### XSS Prevention (if applicable)
-   - Test that HTML/script tags in input are escaped
-
-   ### Error Handling
-   - Test that errors don't expose stack traces
-   - Test graceful handling of malformed JSON
-
-4. Run tests: `python test_security.py`
+1. First, complete Module 4 (E2E) to implement the Flask app
+2. Open `test_security.py` - defines security test expectations
+3. Start Flask app: `python ../4-e2e/app.py` (in one terminal)
+4. Run tests in another: `python test_security.py` - all fail (RED)
+5. Implement security tests by ensuring:
+   - Missing required fields return 400
+   - Invalid data types are handled gracefully
+   - Empty strings are rejected
+   - Large numbers don't cause overflow
+   - Malformed JSON doesn't crash the app
+   - Division by zero returns safe error (not 500)
+6. All tests pass (GREEN)
 
 ## Challenge
 
-- Add tests for rate limiting (if implemented)
-- Test for information disclosure in error messages
-- Verify secure headers are present
+- Add input sanitization to prevent injection attacks
+- Implement rate limiting
+- Add secure headers (X-Content-Type-Options, etc.)

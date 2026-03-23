@@ -1,6 +1,6 @@
-# Module 6 - Mocking and Patching
+# Module 6 - Mocking and Patching (TDD)
 
-**Goal**: Learn to mock external dependencies and test in isolation
+**Goal**: Learn to mock external dependencies and test in isolation using TDD
 
 ## Context
 
@@ -13,18 +13,33 @@ In real applications, code often depends on:
 
 Mocking allows us to test our code without these dependencies.
 
+## TDD Cycle
+
+1. **(RED)** Run tests - they will fail because functions raise NotImplementedError
+2. **(GREEN)** Implement functions using mocking patterns
+3. **(REFACTOR)** Improve code if needed
+
 ## Steps
 
-1. Open `api_client.py` - simulates an external API call
-2. Open `weather_service.py` - uses the API client
-3. Open `test_weather_service.py` - contains test stubs
-4. Implement the tests using `unittest.mock`:
+1. Open `test_weather_service.py` - defines expected behavior
+2. Open `api_client.py` and `weather_service.py` - raise NotImplementedError
+3. Run tests: `python test_weather_service.py` - all fail (RED)
+4. Implement `api_client.py`:
+   - `fetch_weather_data(city)` - return dict with city, temp, condition, humidity
+   - `fetch_forecast(city, days)` - return list of day forecasts
+   - `get_current_hour()` - return current hour (0-23)
+5. Implement `weather_service.py`:
+   - `get_weather(city)` - call api_client.fetch_weather_data
+   - `get_forecast(city, days)` - call api_client.fetch_forecast
+   - `is_good_weather(conditions)` - return True if "sunny" or "partly cloudy"
+   - `get_greeting_based_on_time()` - return greeting based on hour
+6. Use `unittest.mock` to test without real API calls:
 
 ```python
 from unittest.mock import Mock, patch
 
 # Example: Mock an API response
-def test_get_weather(self):
+def test_get_weather_success(self):
     mock_response = Mock()
     mock_response.status_code = 200
     mock_response.json.return_value = {"temp": 25, "condition": "sunny"}
@@ -33,6 +48,8 @@ def test_get_weather(self):
         result = get_weather("London")
         self.assertEqual(result["temp"], 25)
 ```
+
+7. Run tests until all pass (GREEN)
 
 5. Implement these tests:
    - `test_get_weather_success` - mock successful API response

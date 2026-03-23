@@ -1,16 +1,14 @@
 def add(a, b):
-    return a + b
+    raise NotImplementedError("Implement this function using TDD")
 
 
 def subtract(a, b):
-    return a - b
+    raise NotImplementedError("Implement this function using TDD")
 
 
 def multiply(a, b):
-    return a * b
+    raise NotImplementedError("Implement this function using TDD")
 
 
 def divide(a, b):
-    if b == 0:
-        raise ValueError("Cannot divide by zero")
-    return a / b
+    raise NotImplementedError("Implement this function using TDD")

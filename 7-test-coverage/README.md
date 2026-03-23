@@ -1,6 +1,6 @@
-# Module 7 - Test Coverage
+# Module 7 - Test Coverage (TDD)
 
-**Goal**: Learn to measure and improve code coverage
+**Goal**: Learn to measure and improve code coverage using TDD
 
 ## Context
 
@@ -9,37 +9,33 @@ Code coverage measures how much of your source code is executed during tests. Co
 - **Branch coverage** - percentage of branches taken
 - **Function coverage** - percentage of functions called
 
+## TDD Cycle
+
+1. **(RED)** Run tests - they will fail because functions raise NotImplementedError
+2. **(GREEN)** Implement functions in calculator.py to make tests pass
+3. **(REFACTOR)** Improve code, then measure coverage to find gaps
+
 ## Steps
 
-1. Open `calculator.py` - contains functions to test
-2. Open `test_calculator.py` - contains basic tests
-3. First, run tests normally: `python -m pytest test_calculator.py -v`
-4. Install coverage: `pip install coverage`
-5. Run with coverage:
+1. Open `test_calculator.py` - defines expected behavior for all functions
+2. Open `calculator.py` - functions raise NotImplementedError
+3. Run tests: `python -m pytest test_calculator.py -v` - all fail (RED)
+4. Implement each function in calculator.py to make tests pass:
+   - add, subtract, multiply, divide
+   - power, square_root, modulo
+   - is_even, is_positive, factorial
+5. Run tests until all pass (GREEN)
+6. Install coverage: `pip install coverage`
+7. Measure coverage:
    ```bash
    coverage run -m pytest test_calculator.py
-   coverage report
+   coverage report -m
    ```
-6. See which lines are not covered - look for "Missing" column
-7. Add more tests to improve coverage to 100%
-8. Generate HTML report: `coverage html`
-   - Open `htmlcov/index.html` in browser to see visual coverage
+8. Look at "Missing" column - these lines aren't tested
+9. Add more test cases to achieve >80% coverage
+10. Generate HTML report: `coverage html`
 
-## Goals
+## Challenge
 
-- Achieve >80% line coverage
-- Identify and cover edge cases
-- Understand what coverage doesn't tell you
-
-## Additional Commands
-
-```bash
-# Show coverage with missing lines
-coverage report -m
-
-# Run specific module coverage
-coverage run --source=calculator -m pytest test_calculator.py
-
-# Combine coverage from multiple test runs
-coverage combine
-```
+- Achieve 100% line coverage
+- Add edge case tests for: negative numbers, zero, large numbers
