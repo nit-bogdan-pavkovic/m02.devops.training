@@ -11,4 +11,9 @@ Each folder contains an exercise. Do them in the following order:
 - `3-integration-testing`: learn about integration testing
 - `4-e2e-testing`: learn about end-to-end testing
 - `5-test-reports`: configure test reports for Semaphore
-- `6-pipeline`: implement all tests in a CI/CD pipeline
+- `6-mocking`: learn about mocking and patching
+- `7-test-coverage`: learn about code coverage
+- `8-performance-testing`: learn about load and performance testing
+- `9-security-testing`: learn about security testing
+- `10-database-testing`: learn about database testing
+- `11-pipeline`: implement all tests in a CI/CD pipeline

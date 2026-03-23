@@ -1,4 +1,4 @@
-# Module 3 - Unit tests
+# Module 2 - Unit tests
 
 **Goals**
 - implement unit tests
@@ -6,9 +6,21 @@
 
 ## Steps
 
-1. Open and examine `math_sum.py`
+1. Open and examine `math_sum.py` - it now includes add, subtract, multiply, divide
 2. Open `test_math_sum.py`
-3. Add a few test cases (at least 4 more)
-4. Run `python test_math_sum.py` to confirm the unit tests pass
+3. Add comprehensive test cases for all operations:
+   - **add**: positive numbers, negative numbers, zeros, floating point
+   - **subtract**: positive numbers, negative numbers, zeros
+   - **multiply**: positive numbers, negative numbers, zeros, by 1
+   - **divide**: positive numbers, by 1, by negative numbers
+   - **divide by zero**: should raise ValueError
+4. Run `python test_math_sum.py` to confirm all tests pass
+
+## Challenge
+
+Add more advanced functions to `math_sum.py` and test them:
+- power (a^b)
+- square_root
+- modulo (a % b)
 
 

@@ -1,29 +1,26 @@
-# Module 3 - TDD
+# Module 1 - TDD
 
 **Goal**: experiment with the TDD development methodology.
 
 ## Steps
 
+### Part A: Factorial
+
 1. Open `test_factorial.py` and examine its contents
-2. Add a few more tests in the same file
-3. **(RED STAGE)** Run `python test_factorial.py` you should get an error message like this:
+2. Add more test cases for edge cases (negative numbers, large numbers)
+3. **(RED STAGE)** Run `python test_factorial.py` - you should get errors
 
-    ```
-    F
-    ======================================================================
-    FAIL: test_factorial_of_0 (__main__.TestFactorial.test_factorial_of_0)
-    ----------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "/Users/tom/r/devops-course/module3/tdd/test_factorial.py", line 7, in test_factorial_of_0
-        self.assertEqual(factorial(0), 1)
-        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
-    AssertionError: None != 1
+4. **(GREEN STAGE)** Open `factorial.py` and implement the solution until tests pass
+5. **(REFACTOR STAGE)** Improve the solution to handle edge cases
 
-    ----------------------------------------------------------------------
-    Ran 1 test in 0.001s
+### Part B: Fibonacci (Challenge)
 
-    FAILED (failures=1)
-    ```
+1. Open `test_fibonacci.py` and examine its contents
+2. **(RED STAGE)** Run `python test_fibonacci.py` - tests should fail
+3. **(GREEN STAGE)** Add `fibonacci(n)` function to `factorial.py`
+4. Implement until all tests pass
 
-4. **(GREEN STAGE)** Open `factorial.py` and implement the solution until the test passed
-5. **(REFACTOR STAGE)** Improve the solution on `factorial.py` to make it more general or cover edge cases
+## Bonus
+
+- Add tests for invalid inputs (non-integer, negative numbers)
+- Optimize the solution using memoization
